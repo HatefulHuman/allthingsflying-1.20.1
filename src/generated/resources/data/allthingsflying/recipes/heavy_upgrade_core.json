@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:storage_blocks/diamond"
+    },
+    "$": {
+      "tag": "forge:storage_blocks/emerald"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#$#",
+    " # "
+  ],
+  "result": {
+    "item": "allthingsflying:heavy_upgrade_core"
+  },
+  "show_notification": true
+}

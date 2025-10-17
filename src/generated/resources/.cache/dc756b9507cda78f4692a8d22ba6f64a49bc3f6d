@@ -1,0 +1,9 @@
+// 1.20.1	2025-10-08T15:17:19.1880991	Item Models: allthingsflying
+ea8dbcd9433b26e3b89db55cfedf117adb780cd5 assets/allthingsflying/models/item/aero_engine.json
+c57cddaf28c34bc4c93c2b11d6f0705e82eb41e6 assets/allthingsflying/models/item/cloud_engine.json
+a38cbab928e4c613ba6c5adb8dffb1162944883f assets/allthingsflying/models/item/drone_engine.json
+8b825dcd9be1cc206598dd65cf0af54fba2a0316 assets/allthingsflying/models/item/flight_gift_package.json
+f2256f21a0e38d6e3c0f9889c02f4e77ca8235bb assets/allthingsflying/models/item/heavy_upgrade_core.json
+8e25776f31bb820ab40ae20fc222128f280ea5f0 assets/allthingsflying/models/item/magic_engine.json
+545ce7ab35cb2a4fcd6dbcfd4088dffc72944b46 assets/allthingsflying/models/item/thermal_engine.json
+099f48fd430e56c68591c337a801b22a77c976f1 assets/allthingsflying/models/item/upgrade_core.json

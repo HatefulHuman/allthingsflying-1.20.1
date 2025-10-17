@@ -1,0 +1,15 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "com.kfhzs.allthingsflying.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "allthingsflying.refmap.json",
+  "mixins": [
+    "ItemEnchantmentMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

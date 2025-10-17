@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:gems/amethyst"
+    }
+  },
+  "pattern": [
+    "## ",
+    "# #",
+    " ##"
+  ],
+  "result": {
+    "item": "allthingsflying:magic_engine"
+  },
+  "show_notification": true
+}

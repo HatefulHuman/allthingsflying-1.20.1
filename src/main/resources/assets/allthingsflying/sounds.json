@@ -1,0 +1,32 @@
+{
+  "aero_engine_sound": {
+    "subtitle": "sounds.allthingsflying.aero_engine_sound",
+    "sounds": [
+      "allthingsflying:aero_engine_sound"
+    ]
+  },
+  "cloud_engine_sound": {
+    "subtitle": "sounds.allthingsflying.cloud_engine_sound",
+    "sounds": [
+      "allthingsflying:cloud_engine_sound"
+    ]
+  },
+  "drone_engine_sound": {
+    "subtitle": "sounds.allthingsflying.drone_engine_sound",
+    "sounds": [
+      "allthingsflying:drone_engine_sound"
+    ]
+  },
+  "magic_engine_sound": {
+    "subtitle": "sounds.allthingsflying.magic_engine_sound",
+    "sounds": [
+      "allthingsflying:magic_engine_sound"
+    ]
+  },
+  "thermal_engine_sound": {
+    "subtitle": "sounds.allthingsflying.thermal_engine_sound",
+    "sounds": [
+      "allthingsflying:thermal_engine_sound"
+    ]
+  }
+}

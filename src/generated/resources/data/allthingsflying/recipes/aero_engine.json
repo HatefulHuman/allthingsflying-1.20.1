@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "tag": "forge:gems/lapis"
+    }
+  },
+  "pattern": [
+    " # ",
+    "# #",
+    "# #"
+  ],
+  "result": {
+    "item": "allthingsflying:aero_engine"
+  },
+  "show_notification": true
+}
