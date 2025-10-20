@@ -12,6 +12,7 @@ import dev.kosmx.playerAnim.api.layered.modifier.AbstractFadeModifier;
 import dev.kosmx.playerAnim.core.util.Ease;
 import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationAccess;
 import dev.kosmx.playerAnim.minecraftApi.PlayerAnimationRegistry;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -158,7 +159,6 @@ public class MagicBroomEntity extends AerocrafEntity {
                 }
             }
 
-            this.setYRot(rider.getYRot());
             this.setXRot(rider.getXRot() * 0.5f);
             this.xRotO = this.getXRot();
 
@@ -204,15 +204,19 @@ public class MagicBroomEntity extends AerocrafEntity {
                 }
             }
 
-            if (!this.level().isClientSide) {
-                if (actionsTick > 0) {
-                    actionsTick--;
-                }
-                if (rider.xxa != 0 && actionsTick == 0) {
-                    String newAction = getString(rider);
+            boolean left = Minecraft.getInstance().options.keyLeft.isDown();
+            boolean right = Minecraft.getInstance().options.keyRight.isDown();
+            if (right || left) {
+                if (!this.level().isClientSide) {
+                    if (actionsTick > 0) {
+                        actionsTick--;
+                    }
+                    if (rider.xxa != 0 && actionsTick == 0) {
+                        String newAction = getString(rider);
 
-                    this.setDataIdPlayerAction(newAction);
-                    actionsTick = 10;
+                        this.setDataIdPlayerAction(newAction);
+                        actionsTick = 10;
+                    }
                 }
             }
 

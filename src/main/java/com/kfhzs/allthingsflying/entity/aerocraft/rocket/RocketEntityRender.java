@@ -35,7 +35,7 @@ public class RocketEntityRender extends GeoEntityRenderer<RocketEntity> {
     private static ResourceLocation[] createTextureArray(String engineName, int frameCount) {
         ResourceLocation[] textures = new ResourceLocation[frameCount];
         for (int i = 0; i < frameCount; i++) {
-            textures[i] = ResourceLocation.fromNamespaceAndPath(AllThingsFlying.MODID,"textures/entity/" + engineName + "/" + engineName + "_" + (i + 1) + ".png");
+            textures[i] = ResourceLocation.tryBuild(AllThingsFlying.MODID,"textures/entity/" + engineName + "/" + engineName + "_" + (i + 1) + ".png");
         }
         return textures;
     }
