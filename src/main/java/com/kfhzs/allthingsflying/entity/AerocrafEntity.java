@@ -443,9 +443,10 @@ public class AerocrafEntity extends Entity implements GeoEntity {
         } else if (!this.level().isClientSide && !this.isRemoved()) {
             if (this.getOwnerUUID() == null || damageSource.getEntity() == null || (damageSource.getEntity() != null && !this.getOwnerUUID().equals(damageSource.getEntity().getUUID()))) {
                 if (this.getOwnerUUID() != null && damageSource.getEntity() != null) {
-                    ServerPlayer player = this.level().getServer().getPlayerList().getPlayer(this.uuid);
-                    player.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE)
-                            .getHolderOrThrow(DamageTypes.MAGIC), damageSource.getEntity()), 10.0F);
+                    ServerPlayer player = this.level().getServer().getPlayerList().getPlayer(this.getOwnerUUID());
+                    if (player != null) {
+                        player.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC), damageSource.getEntity()), 10.0F);
+                    }
                 }
                 this.setHurtDir(-this.getHurtDir());
                 this.setHurtTime(10);
