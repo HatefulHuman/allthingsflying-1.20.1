@@ -28,5 +28,11 @@
     "sounds": [
       "allthingsflying:thermal_engine_sound"
     ]
+  },
+  "streamer_engine_sound": {
+    "subtitle": "sounds.allthingsflying.streamer_engine_sound",
+    "sounds": [
+      "allthingsflying:streamer_engine_sound"
+    ]
   }
 }

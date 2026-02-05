@@ -18,6 +18,7 @@ public class ModSounds {
     public static final RegistryObject<SoundEvent> DRONE_ENGINE_SOUND = registerSoundEvent("drone_engine_sound");
     public static final RegistryObject<SoundEvent> MAGIC_ENGINE_SOUND = registerSoundEvent("magic_engine_sound");
     public static final RegistryObject<SoundEvent> THERMAL_ENGINE_SOUND = registerSoundEvent("thermal_engine_sound");
+    public static final RegistryObject<SoundEvent> STREAMER_ENGINE_SOUND = registerSoundEvent("streamer_engine_sound");
 
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(Objects.requireNonNull(ResourceLocation.tryBuild(AllThingsFlying.MODID, name))));

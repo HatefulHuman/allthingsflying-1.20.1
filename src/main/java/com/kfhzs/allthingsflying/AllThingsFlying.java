@@ -3,11 +3,13 @@ package com.kfhzs.allthingsflying;
 import com.kfhzs.allthingsflying.enchantment.ModEnchantments;
 import com.kfhzs.allthingsflying.entity.EntityRegister;
 import com.kfhzs.allthingsflying.entity.aerocraft.broom.MagicBroomEntityRender;
+import com.kfhzs.allthingsflying.entity.aerocraft.carpet.FlyingCarpetEntityRender;
 import com.kfhzs.allthingsflying.entity.aerocraft.drone.DroneEntityRender;
 import com.kfhzs.allthingsflying.entity.aerocraft.rocket.RocketEntityRender;
 import com.kfhzs.allthingsflying.entity.aerocraft.sword.FlyingSwordEntityRender;
 import com.kfhzs.allthingsflying.entity.item.AerocraftItemRenderer;
 import com.kfhzs.allthingsflying.entity.item.model.*;
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import com.kfhzs.allthingsflying.loot_modifier.ModLootModifier;
 import com.kfhzs.allthingsflying.network.NetworkHandler;
@@ -39,12 +41,17 @@ public class AllThingsFlying {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
     public static final RegistryObject<CreativeModeTab> ALL_THINGS_FLYING_TAB = CREATIVE_MODE_TABS.register("allthingsflying_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup."+ MODID +".allthingsflying_tab")).icon(() -> ItemsRegister.THERMAL_ENGINE.get().getDefaultInstance())
+            .title(Component.translatable("itemGroup." + MODID + ".allthingsflying_tab")).icon(() -> ItemsRegister.THERMAL_ENGINE.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.accept(ItemsRegister.DRONE.get());
                 output.accept(ItemsRegister.ROCKET_PC1.get());
                 output.accept(ItemsRegister.MAGIC_BROOM.get());
                 output.accept(ItemsRegister.FLYING_SWORD.get());
+
+                // 长生诀联动飞行器
+                if (IntegrationItemsRegister.isChangShengJueLoaded()) {
+                    output.accept(IntegrationItemsRegister.FLYING_CARPET.get());
+                }
 
                 output.accept(ItemsRegister.AERO_ENGINE.get());
                 output.accept(ItemsRegister.THERMAL_ENGINE.get());
@@ -52,6 +59,12 @@ public class AllThingsFlying {
 
                 output.accept(ItemsRegister.DRONE_ENGINE.get());
                 output.accept(ItemsRegister.CLOUD_ENGINE.get());
+
+                // 长生诀联动引擎
+                if (IntegrationItemsRegister.isChangShengJueLoaded()) {
+                    output.accept(IntegrationItemsRegister.STREAMER_ENGINE.get());
+                }
+
                 output.accept(ItemsRegister.UPGRADE_CORE.get());
 
                 output.accept(ItemsRegister.HEAVY_UPGRADE_CORE.get());
@@ -59,8 +72,8 @@ public class AllThingsFlying {
                 output.accept(ItemsRegister.FLIGHT_GIFT_PACKAGE.get());
             }).build());
 
-    public AllThingsFlying() {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+    public AllThingsFlying(FMLJavaModLoadingContext context) {
+        IEventBus modEventBus = context.getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::onClientSetup);
@@ -69,6 +82,7 @@ public class AllThingsFlying {
 
         CREATIVE_MODE_TABS.register(modEventBus);
         ItemsRegister.register(modEventBus);
+        IntegrationItemsRegister.register(modEventBus); // 注册联动物品
         EntityRegister.register(modEventBus);
         ModParticles.register(modEventBus);
         ModEnchantments.register(modEventBus);
@@ -90,15 +104,18 @@ public class AllThingsFlying {
         EntityRenderers.register(EntityRegister.MAGIC_BROOM.get(), MagicBroomEntityRender::new);
         EntityRenderers.register(EntityRegister.DRONE.get(), DroneEntityRender::new);
         EntityRenderers.register(EntityRegister.FLYING_SWORD.get(), FlyingSwordEntityRender::new);
+        EntityRenderers.register(EntityRegister.FLYING_CARPET.get(), FlyingCarpetEntityRender::new);
     }
 
     public void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(AerocraftItemAeroEngineModel.LAYER_LOCATION, AerocraftItemAeroEngineModel::createBodyLayer);
         event.registerLayerDefinition(AerocraftBlockItemAeroEngineModel.LAYER_LOCATION, AerocraftBlockItemAeroEngineModel::createBodyLayer);
-        event.registerLayerDefinition(AerocraftItemThermalEngineMod.LAYER_LOCATION, AerocraftItemThermalEngineMod::createBodyLayer);
-        event.registerLayerDefinition(AerocraftItemMagicEngineMod.LAYER_LOCATION, AerocraftItemMagicEngineMod::createBodyLayer);
-        event.registerLayerDefinition(AerocraftItemDroneEngineMod.LAYER_LOCATION, AerocraftItemDroneEngineMod::createBodyLayer);
+        event.registerLayerDefinition(AerocraftItemThermalEngineModel.LAYER_LOCATION, AerocraftItemThermalEngineModel::createBodyLayer);
+        event.registerLayerDefinition(AerocraftItemMagicEngineModel.LAYER_LOCATION, AerocraftItemMagicEngineModel::createBodyLayer);
+        event.registerLayerDefinition(AerocraftItemDroneEngineModel.LAYER_LOCATION, AerocraftItemDroneEngineModel::createBodyLayer);
         event.registerLayerDefinition(AerocraftBedItemDroneEngineMod.LAYER_LOCATION, AerocraftBedItemDroneEngineMod::createBodyLayer);
+        event.registerLayerDefinition(AerocraftItemStreamerEngineMod.LAYER_LOCATION, AerocraftItemStreamerEngineMod::createBodyLayer);
+        event.registerLayerDefinition(AerocraftBlockItemStreamerEngineMod.LAYER_LOCATION, AerocraftBlockItemStreamerEngineMod::createBodyLayer);
     }
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {

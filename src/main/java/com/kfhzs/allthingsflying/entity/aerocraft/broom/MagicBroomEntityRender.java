@@ -1,11 +1,9 @@
 package com.kfhzs.allthingsflying.entity.aerocraft.broom;
 
 import com.kfhzs.allthingsflying.AllThingsFlying;
-import com.kfhzs.allthingsflying.entity.item.model.AerocraftBlockItemAeroEngineModel;
-import com.kfhzs.allthingsflying.entity.item.model.AerocraftItemDroneEngineMod;
-import com.kfhzs.allthingsflying.entity.item.model.AerocraftItemMagicEngineMod;
-import com.kfhzs.allthingsflying.entity.item.model.AerocraftItemThermalEngineMod;
+import com.kfhzs.allthingsflying.entity.item.model.*;
 import com.kfhzs.allthingsflying.entity.rendertype.CustomBlendRenderType;
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import com.kfhzs.allthingsflying.recipe.EngineHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -24,14 +22,16 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 @OnlyIn(Dist.CLIENT)
 public class MagicBroomEntityRender extends GeoEntityRenderer<MagicBroomEntity> {
     private final AerocraftBlockItemAeroEngineModel<MagicBroomEntity> aeroEngineModel;
-    private final AerocraftItemThermalEngineMod<MagicBroomEntity> thermalEngineModel;
-    private final AerocraftItemMagicEngineMod<MagicBroomEntity> magicEngineModel;
-    private final AerocraftItemDroneEngineMod<MagicBroomEntity> droneEngineModel;
+    private final AerocraftItemThermalEngineModel<MagicBroomEntity> thermalEngineModel;
+    private final AerocraftItemMagicEngineModel<MagicBroomEntity> magicEngineModel;
+    private final AerocraftItemDroneEngineModel<MagicBroomEntity> droneEngineModel;
+    private final AerocraftBlockItemStreamerEngineMod<MagicBroomEntity> streamerBlockEngineModel;
     // 纹理数组
     private static final ResourceLocation[] AERO_ENGINE_TEXTURES = createTextureArray("aero_engine", 16);
     private static final ResourceLocation[] THERMAL_ENGINE_TEXTURES = createTextureArray("thermal_engine", 20);
     private static final ResourceLocation[] MAGIC_ENGINE_TEXTURES = createTextureArray("magic_engine", 20);
     private static final ResourceLocation[] DRONE_ENGINE_TEXTURES = createTextureArray("drone_engine", 20);
+    private static final ResourceLocation[] STREAMER_ENGINE_TEXTURES = createTextureArray("streamer_engine", 20);
 
     private static ResourceLocation[] createTextureArray(String engineName, int frameCount) {
         ResourceLocation[] textures = new ResourceLocation[frameCount];
@@ -47,9 +47,10 @@ public class MagicBroomEntityRender extends GeoEntityRenderer<MagicBroomEntity> 
     public MagicBroomEntityRender(EntityRendererProvider.Context context) {
         super(context, new DefaultedEntityGeoModel<>(ResourceLocation.tryBuild(AllThingsFlying.MODID, "magic_broom")));
         this.aeroEngineModel = new AerocraftBlockItemAeroEngineModel<>(context.bakeLayer(AerocraftBlockItemAeroEngineModel.LAYER_LOCATION));
-        this.thermalEngineModel = new AerocraftItemThermalEngineMod<>(context.bakeLayer(AerocraftItemThermalEngineMod.LAYER_LOCATION));
-        this.magicEngineModel = new AerocraftItemMagicEngineMod<>(context.bakeLayer(AerocraftItemMagicEngineMod.LAYER_LOCATION));
-        this.droneEngineModel = new AerocraftItemDroneEngineMod<>(context.bakeLayer(AerocraftItemDroneEngineMod.LAYER_LOCATION));
+        this.thermalEngineModel = new AerocraftItemThermalEngineModel<>(context.bakeLayer(AerocraftItemThermalEngineModel.LAYER_LOCATION));
+        this.magicEngineModel = new AerocraftItemMagicEngineModel<>(context.bakeLayer(AerocraftItemMagicEngineModel.LAYER_LOCATION));
+        this.droneEngineModel = new AerocraftItemDroneEngineModel<>(context.bakeLayer(AerocraftItemDroneEngineModel.LAYER_LOCATION));
+        this.streamerBlockEngineModel = new AerocraftBlockItemStreamerEngineMod<>(context.bakeLayer(AerocraftBlockItemStreamerEngineMod.LAYER_LOCATION));
     }
 
     @Override
@@ -68,6 +69,8 @@ public class MagicBroomEntityRender extends GeoEntityRenderer<MagicBroomEntity> 
             this.renderMagicEngineEffect(entity, partialTick, poseStack, buffer, packedLight, lerpYRot, lerpXRot);
         } else if (EngineHelper.getEngineItem(entity.getItemStack()).is(ItemsRegister.DRONE_ENGINE.get())) {
             this.renderDroneEngineEffect(entity, partialTick, poseStack, buffer, packedLight, lerpYRot, lerpXRot);
+        } else if (IntegrationItemsRegister.isChangShengJueLoaded() && EngineHelper.getEngineItem(entity.getItemStack()).is(IntegrationItemsRegister.STREAMER_ENGINE.get())) {
+            this.renderStreamerEngineBlockItemModelEffect(entity, partialTick, poseStack, buffer, packedLight, lerpYRot, lerpXRot);
         }
         poseStack.popPose();
     }
@@ -158,7 +161,6 @@ public class MagicBroomEntityRender extends GeoEntityRenderer<MagicBroomEntity> 
         int currentFrame = getCurrentFrameIndex(entity, partialTicks, DRONE_ENGINE_TEXTURES.length);
         ResourceLocation currentTexture = getFrameTexture(currentFrame, entity.getItemStack());
         this.droneEngineModel.setupAnim(entity, 0, 0, entity.tickCount + partialTicks, lerpYRot, lerpXRot);
-        float alpha = calculateAlphaSmooth(entity);
         this.droneEngineModel.renderToBuffer(poseStack,
                 buffer.getBuffer(CustomBlendRenderType.wind(currentTexture)),
                 packedLight,
@@ -168,6 +170,33 @@ public class MagicBroomEntityRender extends GeoEntityRenderer<MagicBroomEntity> 
                 1.0F,
                 0.7F);
 
+        poseStack.popPose();
+    }
+
+    private void renderStreamerEngineBlockItemModelEffect(MagicBroomEntity entity, float partialTicks, PoseStack poseStack,
+                                                          MultiBufferSource buffer, int packedLight, float lerpYRot, float lerpXRot) {
+        poseStack.pushPose();
+
+        poseStack.mulPose(Axis.YP.rotationDegrees(180));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(180));
+
+        poseStack.translate(0.0F, 0.0F, 0.0F);
+
+        poseStack.scale(0.65F, 0.65F, 0.65F);
+        poseStack.translate(0.0F, -1.5F, -2.0F);
+        int currentFrame = getCurrentFrameIndex(entity, partialTicks, STREAMER_ENGINE_TEXTURES.length);
+        ResourceLocation currentTexture = getFrameTexture(currentFrame, entity.getItemStack());
+        streamerBlockEngineModel.setupAnim(entity, 0, 0, entity.tickCount + partialTicks, lerpYRot, lerpXRot);
+        float alpha = calculateAlphaSmooth(entity);
+
+        streamerBlockEngineModel.renderToBuffer(poseStack,
+                buffer.getBuffer(CustomBlendRenderType.wind(currentTexture)),
+                packedLight,
+                OverlayTexture.NO_OVERLAY,
+                1.0F,
+                1.0F,
+                1.0F,
+                alpha);
         poseStack.popPose();
     }
 
@@ -205,6 +234,10 @@ public class MagicBroomEntityRender extends GeoEntityRenderer<MagicBroomEntity> 
         } else if (EngineHelper.getEngineItem(stack).is(ItemsRegister.DRONE_ENGINE.get())) {
             if (frameIndex >= 0 && frameIndex < DRONE_ENGINE_TEXTURES.length) {
                 return DRONE_ENGINE_TEXTURES[frameIndex];
+            }
+        } else if (IntegrationItemsRegister.isChangShengJueLoaded() && EngineHelper.getEngineItem(stack).is(IntegrationItemsRegister.STREAMER_ENGINE.get())) {
+            if (frameIndex >= 0 && frameIndex < STREAMER_ENGINE_TEXTURES.length) {
+                return STREAMER_ENGINE_TEXTURES[frameIndex];
             }
         }
         return AERO_ENGINE_TEXTURES[0];

@@ -1,6 +1,7 @@
 package com.kfhzs.allthingsflying.datagen;
 
 import com.kfhzs.allthingsflying.AllThingsFlying;
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -22,6 +23,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem((ItemsRegister.MAGIC_ENGINE));
         simpleItem((ItemsRegister.DRONE_ENGINE));
         simpleItem((ItemsRegister.CLOUD_ENGINE));
+
+        // 联动物品模型
+        if (IntegrationItemsRegister.isChangShengJueLoaded()) {
+            simpleItem((IntegrationItemsRegister.STREAMER_ENGINE));
+        }
+
         simpleItem((ItemsRegister.UPGRADE_CORE));
         simpleItem((ItemsRegister.HEAVY_UPGRADE_CORE));
         simpleItem((ItemsRegister.FLIGHT_GIFT_PACKAGE));

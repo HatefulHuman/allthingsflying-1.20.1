@@ -2,6 +2,7 @@ package com.kfhzs.allthingsflying.recipe;
 
 import com.kfhzs.allthingsflying.capability.ModCapabilities;
 import com.kfhzs.allthingsflying.items.Engine;
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import com.kfhzs.allthingsflying.items.aerocraft.Aerocraft;
 import net.minecraft.core.NonNullList;

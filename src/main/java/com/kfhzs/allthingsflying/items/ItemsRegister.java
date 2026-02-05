@@ -1,7 +1,10 @@
 package com.kfhzs.allthingsflying.items;
 
 import com.kfhzs.allthingsflying.AllThingsFlying;
-import com.kfhzs.allthingsflying.items.aerocraft.*;
+import com.kfhzs.allthingsflying.items.aerocraft.Drone;
+import com.kfhzs.allthingsflying.items.aerocraft.FlyingSword;
+import com.kfhzs.allthingsflying.items.aerocraft.MagicBroom;
+import com.kfhzs.allthingsflying.items.aerocraft.Rocket;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

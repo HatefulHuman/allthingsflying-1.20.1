@@ -1,11 +1,9 @@
 package com.kfhzs.allthingsflying.entity.aerocraft.drone;
 
 import com.kfhzs.allthingsflying.AllThingsFlying;
-import com.kfhzs.allthingsflying.entity.item.model.AerocraftBlockItemAeroEngineModel;
-import com.kfhzs.allthingsflying.entity.item.model.AerocraftItemDroneEngineMod;
-import com.kfhzs.allthingsflying.entity.item.model.AerocraftItemMagicEngineMod;
-import com.kfhzs.allthingsflying.entity.item.model.AerocraftItemThermalEngineMod;
+import com.kfhzs.allthingsflying.entity.item.model.*;
 import com.kfhzs.allthingsflying.entity.rendertype.CustomBlendRenderType;
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import com.kfhzs.allthingsflying.recipe.EngineHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -24,14 +22,16 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 @OnlyIn(Dist.CLIENT)
 public class DroneEntityRender extends GeoEntityRenderer<DroneEntity> {
     private final AerocraftBlockItemAeroEngineModel<DroneEntity> aeroEngineModel;
-    private final AerocraftItemThermalEngineMod<DroneEntity> thermalEngineModel;
-    private final AerocraftItemMagicEngineMod<DroneEntity> magicEngineModel;
-    private final AerocraftItemDroneEngineMod<DroneEntity> droneEngineModel;
+    private final AerocraftItemThermalEngineModel<DroneEntity> thermalEngineModel;
+    private final AerocraftItemMagicEngineModel<DroneEntity> magicEngineModel;
+    private final AerocraftItemDroneEngineModel<DroneEntity> droneEngineModel;
+    private final AerocraftItemStreamerEngineMod<DroneEntity> streamerEngineModel;
     // 纹理数组
     private static final ResourceLocation[] AERO_ENGINE_TEXTURES = createTextureArray("aero_engine", 16);
     private static final ResourceLocation[] THERMAL_ENGINE_TEXTURES = createTextureArray("thermal_engine", 20);
     private static final ResourceLocation[] MAGIC_ENGINE_TEXTURES = createTextureArray("magic_engine", 20);
     private static final ResourceLocation[] DRONE_ENGINE_TEXTURES = createTextureArray("drone_engine", 20);
+    private static final ResourceLocation[] STREAMER_ENGINE_TEXTURES = createTextureArray("streamer_engine", 20);
 
     private static ResourceLocation[] createTextureArray(String engineName, int frameCount) {
         ResourceLocation[] textures = new ResourceLocation[frameCount];
@@ -47,9 +47,10 @@ public class DroneEntityRender extends GeoEntityRenderer<DroneEntity> {
     public DroneEntityRender(EntityRendererProvider.Context context) {
         super(context, new DefaultedEntityGeoModel<>(ResourceLocation.tryBuild(AllThingsFlying.MODID, "drone")));
         this.aeroEngineModel = new AerocraftBlockItemAeroEngineModel<>(context.bakeLayer(AerocraftBlockItemAeroEngineModel.LAYER_LOCATION));
-        this.thermalEngineModel = new AerocraftItemThermalEngineMod<>(context.bakeLayer(AerocraftItemThermalEngineMod.LAYER_LOCATION));
-        this.magicEngineModel = new AerocraftItemMagicEngineMod<>(context.bakeLayer(AerocraftItemMagicEngineMod.LAYER_LOCATION));
-        this.droneEngineModel = new AerocraftItemDroneEngineMod<>(context.bakeLayer(AerocraftItemDroneEngineMod.LAYER_LOCATION));
+        this.thermalEngineModel = new AerocraftItemThermalEngineModel<>(context.bakeLayer(AerocraftItemThermalEngineModel.LAYER_LOCATION));
+        this.magicEngineModel = new AerocraftItemMagicEngineModel<>(context.bakeLayer(AerocraftItemMagicEngineModel.LAYER_LOCATION));
+        this.droneEngineModel = new AerocraftItemDroneEngineModel<>(context.bakeLayer(AerocraftItemDroneEngineModel.LAYER_LOCATION));
+        this.streamerEngineModel = new AerocraftItemStreamerEngineMod<>(context.bakeLayer(AerocraftItemStreamerEngineMod.LAYER_LOCATION));
     }
 
     @Override
@@ -67,6 +68,8 @@ public class DroneEntityRender extends GeoEntityRenderer<DroneEntity> {
             this.renderMagicEngineEffect(entity, partialTick, poseStack, buffer, packedLight, lerpYRot, lerpXRot);
         } else if (EngineHelper.getEngineItem(entity.getItemStack()).is(ItemsRegister.DRONE_ENGINE.get())) {
             this.renderDroneEngineEffect(entity, partialTick, poseStack, buffer, packedLight, lerpYRot, lerpXRot);
+        } else if (IntegrationItemsRegister.isChangShengJueLoaded() && EngineHelper.getEngineItem(entity.getItemStack()).is(IntegrationItemsRegister.STREAMER_ENGINE.get())) {
+            this.renderStreamerEngineEffect(entity, partialTick, poseStack, buffer, packedLight, lerpYRot, lerpXRot);
         }
         poseStack.popPose();
     }
@@ -204,6 +207,36 @@ public class DroneEntityRender extends GeoEntityRenderer<DroneEntity> {
         poseStack.popPose();
     }
 
+    private void renderStreamerEngineEffect(DroneEntity entity, float partialTicks, PoseStack poseStack,
+                                            MultiBufferSource buffer, int packedLight, float lerpYRot, float lerpXRot) {
+        poseStack.pushPose();
+
+        poseStack.mulPose(Axis.YP.rotationDegrees(180));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(180));
+
+        poseStack.translate(0.0F, 0.0F, 0.0F);
+
+        poseStack.scale(1.0F, 1.0F, 1.0F);
+        poseStack.translate(0.0F, -1.2F, -1.3F);
+
+        int currentFrame = getCurrentFrameIndex(entity, partialTicks, STREAMER_ENGINE_TEXTURES.length);
+        ResourceLocation currentTexture = getFrameTexture(currentFrame, entity.getItemStack());
+
+        streamerEngineModel.setupAnim(entity, 0, 0, entity.tickCount + partialTicks, lerpYRot, lerpXRot);
+        float alpha = calculateAlphaSmooth(entity);
+
+        streamerEngineModel.renderToBuffer(poseStack,
+                buffer.getBuffer(CustomBlendRenderType.wind(currentTexture)),
+                packedLight,
+                OverlayTexture.NO_OVERLAY,
+                1.0F,
+                1.0F,
+                1.0F,
+                alpha);
+
+        poseStack.popPose();
+    }
+
     private float calculateAlphaSmooth(DroneEntity animatable) {
         float currentSpeed = Math.abs(animatable.getPlayerSpeed());
         float maxSpeed = animatable.getMaxSpeed();
@@ -238,6 +271,10 @@ public class DroneEntityRender extends GeoEntityRenderer<DroneEntity> {
         } else if (EngineHelper.getEngineItem(stack).is(ItemsRegister.DRONE_ENGINE.get())) {
             if (frameIndex >= 0 && frameIndex < DRONE_ENGINE_TEXTURES.length) {
                 return DRONE_ENGINE_TEXTURES[frameIndex];
+            }
+        } else if (IntegrationItemsRegister.isChangShengJueLoaded() && EngineHelper.getEngineItem(stack).is(IntegrationItemsRegister.STREAMER_ENGINE.get())) {
+            if (frameIndex >= 0 && frameIndex < STREAMER_ENGINE_TEXTURES.length) {
+                return STREAMER_ENGINE_TEXTURES[frameIndex];
             }
         }
         return AERO_ENGINE_TEXTURES[0];

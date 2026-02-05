@@ -2,6 +2,7 @@ package com.kfhzs.allthingsflying.entity;
 
 import com.kfhzs.allthingsflying.AllThingsFlying;
 import com.kfhzs.allthingsflying.entity.aerocraft.broom.MagicBroomEntity;
+import com.kfhzs.allthingsflying.entity.aerocraft.carpet.FlyingCarpetEntity;
 import com.kfhzs.allthingsflying.entity.aerocraft.drone.DroneEntity;
 import com.kfhzs.allthingsflying.entity.aerocraft.rocket.RocketEntity;
 import com.kfhzs.allthingsflying.entity.aerocraft.sword.FlyingSwordEntity;
@@ -27,37 +28,43 @@ public class EntityRegister {
     public static final RegistryObject<EntityType<RocketEntity>> ROCKET_PC1 =
             ENTITY_TYPES.register("rocket_pc1",
                     () -> EntityType.Builder.<RocketEntity>of(RocketEntity::new, MobCategory.MISC)
-                            .sized(3.0f,1.0f)
+                            .sized(3.0f, 1.0f)
                             .clientTrackingRange(10)
                             .build("rocket_pc1"));
 
     public static final RegistryObject<EntityType<MagicBroomEntity>> MAGIC_BROOM =
             ENTITY_TYPES.register("magic_broom",
                     () -> EntityType.Builder.<MagicBroomEntity>of(MagicBroomEntity::new, MobCategory.MISC)
-                            .sized(3.0f,0.5f)
+                            .sized(3.0f, 0.5f)
                             .clientTrackingRange(10)
                             .build("magic_broom"));
 
     public static final RegistryObject<EntityType<DroneEntity>> DRONE =
             ENTITY_TYPES.register("drone",
                     () -> EntityType.Builder.<DroneEntity>of(DroneEntity::new, MobCategory.MISC)
-                            .sized(3.0f,1.0f)
+                            .sized(3.0f, 1.0f)
                             .clientTrackingRange(10)
                             .build("drone"));
 
     public static final RegistryObject<EntityType<FlyingSwordEntity>> FLYING_SWORD =
             ENTITY_TYPES.register("flying_sword",
                     () -> EntityType.Builder.<FlyingSwordEntity>of(FlyingSwordEntity::new, MobCategory.MISC)
-                            .sized(3.0f,0.5f)
+                            .sized(3.0f, 0.5f)
                             .clientTrackingRange(10)
                             .build("flying_sword"));
 
+    public static final RegistryObject<EntityType<FlyingCarpetEntity>> FLYING_CARPET =
+            ENTITY_TYPES.register("flying_carpet",
+                    () -> EntityType.Builder.<FlyingCarpetEntity>of(FlyingCarpetEntity::new, MobCategory.MISC)
+                            .sized(3.0f, 1.0f)
+                            .clientTrackingRange(10)
+                            .build("flying_carpet"));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, EntityType.Builder<T> builder) {
         return ENTITY_TYPES.register(name, () -> builder.build(name));
     }
 
-    public static void register(IEventBus eventBus){
+    public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }
 }

@@ -3,6 +3,7 @@ package com.kfhzs.allthingsflying.entity.item;
 import com.kfhzs.allthingsflying.AllThingsFlying;
 import com.kfhzs.allthingsflying.entity.item.model.*;
 import com.kfhzs.allthingsflying.entity.rendertype.CustomBlendRenderType;
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import com.kfhzs.allthingsflying.recipe.EngineHelper;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -25,17 +26,20 @@ import org.jetbrains.annotations.NotNull;
 public class AerocraftItemRenderer extends EntityRenderer<AerocraftItemEntity> {
     private final ItemRenderer itemRenderer;
     private final AerocraftItemAeroEngineModel<AerocraftItemEntity> aeroEngineModel;
-    private final AerocraftBlockItemAeroEngineModel<AerocraftItemEntity> blockAeroEngineModel;
-    private final AerocraftItemThermalEngineMod<AerocraftItemEntity> thermalEngineModel;
-    private final AerocraftItemMagicEngineMod<AerocraftItemEntity> magicEngineModel;
-    private final AerocraftItemDroneEngineMod<AerocraftItemEntity> droneEngineModel;
+    private final AerocraftBlockItemAeroEngineModel<AerocraftItemEntity> aeroBlockEngineModel;
+    private final AerocraftItemThermalEngineModel<AerocraftItemEntity> thermalEngineModel;
+    private final AerocraftItemMagicEngineModel<AerocraftItemEntity> magicEngineModel;
+    private final AerocraftItemDroneEngineModel<AerocraftItemEntity> droneEngineModel;
     private final AerocraftBedItemDroneEngineMod<AerocraftItemEntity> droneEngineBedModel;
+    private final AerocraftItemStreamerEngineMod<AerocraftItemEntity> streamerEngineModel;
+    private final AerocraftBlockItemStreamerEngineMod<AerocraftItemEntity> streamerBlockEngineModel;
 
     // 纹理数组
     private static final ResourceLocation[] AERO_ENGINE_TEXTURES = createTextureArray("aero_engine", 16);
     private static final ResourceLocation[] THERMAL_ENGINE_TEXTURES = createTextureArray("thermal_engine", 20);
     private static final ResourceLocation[] MAGIC_ENGINE_TEXTURES = createTextureArray("magic_engine", 20);
     private static final ResourceLocation[] DRONE_ENGINE_TEXTURES = createTextureArray("drone_engine", 20);
+    private static final ResourceLocation[] STREAMER_ENGINE_TEXTURES = createTextureArray("streamer_engine", 20);
     private static ResourceLocation[] createTextureArray(String engineName, int frameCount) {
         ResourceLocation[] textures = new ResourceLocation[frameCount];
         for (int i = 0; i < frameCount; i++) {
@@ -53,11 +57,13 @@ public class AerocraftItemRenderer extends EntityRenderer<AerocraftItemEntity> {
         super(context);
         this.itemRenderer = context.getItemRenderer();
         this.aeroEngineModel = new AerocraftItemAeroEngineModel<>(context.bakeLayer(AerocraftItemAeroEngineModel.LAYER_LOCATION));
-        this.blockAeroEngineModel = new AerocraftBlockItemAeroEngineModel<>(context.bakeLayer(AerocraftBlockItemAeroEngineModel.LAYER_LOCATION));
-        this.thermalEngineModel = new AerocraftItemThermalEngineMod<>(context.bakeLayer(AerocraftItemThermalEngineMod.LAYER_LOCATION));
-        this.magicEngineModel = new AerocraftItemMagicEngineMod<>(context.bakeLayer(AerocraftItemMagicEngineMod.LAYER_LOCATION));
-        this.droneEngineModel = new AerocraftItemDroneEngineMod<>(context.bakeLayer(AerocraftItemDroneEngineMod.LAYER_LOCATION));
+        this.aeroBlockEngineModel = new AerocraftBlockItemAeroEngineModel<>(context.bakeLayer(AerocraftBlockItemAeroEngineModel.LAYER_LOCATION));
+        this.thermalEngineModel = new AerocraftItemThermalEngineModel<>(context.bakeLayer(AerocraftItemThermalEngineModel.LAYER_LOCATION));
+        this.magicEngineModel = new AerocraftItemMagicEngineModel<>(context.bakeLayer(AerocraftItemMagicEngineModel.LAYER_LOCATION));
+        this.droneEngineModel = new AerocraftItemDroneEngineModel<>(context.bakeLayer(AerocraftItemDroneEngineModel.LAYER_LOCATION));
         this.droneEngineBedModel = new AerocraftBedItemDroneEngineMod<>(context.bakeLayer(AerocraftBedItemDroneEngineMod.LAYER_LOCATION));
+        this.streamerEngineModel = new AerocraftItemStreamerEngineMod<>(context.bakeLayer(AerocraftItemStreamerEngineMod.LAYER_LOCATION));
+        this.streamerBlockEngineModel = new AerocraftBlockItemStreamerEngineMod<>(context.bakeLayer(AerocraftBlockItemStreamerEngineMod.LAYER_LOCATION));
     }
 
     @Override
@@ -133,6 +139,13 @@ public class AerocraftItemRenderer extends EntityRenderer<AerocraftItemEntity> {
             }
         } else if (EngineHelper.getEngineItem(entity.getItemStack()).is(ItemsRegister.DRONE_ENGINE.get())) {
             renderDroneEngineEffect(entity, partialTicks, poseStack, buffer, packedLight, lerpYRot, lerpXRot);
+        } else if (IntegrationItemsRegister.isChangShengJueLoaded() &&
+                EngineHelper.getEngineItem(entity.getItemStack()).is(IntegrationItemsRegister.STREAMER_ENGINE.get())) {
+            if (isSpecialBlockItem(item)) {
+                renderStreamerEngineBlockItemModelEffect(entity, partialTicks, poseStack, buffer, packedLight, lerpYRot, lerpXRot);
+            } else {
+                renderStreamerEngineEffect(entity, partialTicks, poseStack, buffer, packedLight, lerpYRot, lerpXRot);
+            }
         }
 
     }
@@ -184,9 +197,9 @@ public class AerocraftItemRenderer extends EntityRenderer<AerocraftItemEntity> {
         }
         int currentFrame = getCurrentFrameIndex(entity, partialTicks, AERO_ENGINE_TEXTURES.length);
         ResourceLocation currentTexture = getFrameTexture(currentFrame, entity.getItemStack());
-        blockAeroEngineModel.setupAnim(entity, 0, 0, entity.tickCount + partialTicks, lerpYRot, lerpXRot);
+        aeroBlockEngineModel.setupAnim(entity, 0, 0, entity.tickCount + partialTicks, lerpYRot, lerpXRot);
         float alpha = calculateAlphaSmooth(entity);
-        blockAeroEngineModel.renderToBuffer(poseStack,
+        aeroBlockEngineModel.renderToBuffer(poseStack,
                 buffer.getBuffer(CustomBlendRenderType.wind(currentTexture)),
                 packedLight,
                 OverlayTexture.NO_OVERLAY,
@@ -345,6 +358,70 @@ public class AerocraftItemRenderer extends EntityRenderer<AerocraftItemEntity> {
         poseStack.popPose();
     }
 
+
+    private void renderStreamerEngineEffect(AerocraftItemEntity entity, float partialTicks, PoseStack poseStack,
+                                            MultiBufferSource buffer, int packedLight, float lerpYRot, float lerpXRot) {
+        poseStack.pushPose();
+
+        poseStack.mulPose(Axis.YP.rotationDegrees(180 - lerpYRot));
+        poseStack.mulPose(Axis.XP.rotationDegrees(-lerpXRot * 0.5f));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(180));
+
+        poseStack.translate(0.0F, 0.0F, 0.0F);
+
+        poseStack.scale(0.5F, 0.5F, 0.5F);
+        poseStack.translate(0.0F, -1.2F, -1.3F);
+
+        int currentFrame = getCurrentFrameIndex(entity, partialTicks, STREAMER_ENGINE_TEXTURES.length);
+        ResourceLocation currentTexture = getFrameTexture(currentFrame, entity.getItemStack());
+
+        streamerEngineModel.setupAnim(entity, 0, 0, entity.tickCount + partialTicks, lerpYRot, lerpXRot);
+        float alpha = calculateAlphaSmooth(entity);
+
+        streamerEngineModel.renderToBuffer(poseStack,
+                buffer.getBuffer(CustomBlendRenderType.wind(currentTexture)),
+                packedLight,
+                OverlayTexture.NO_OVERLAY,
+                1.0F,
+                1.0F,
+                1.0F,
+                alpha);
+
+        poseStack.popPose();
+    }
+
+    private void renderStreamerEngineBlockItemModelEffect(AerocraftItemEntity entity, float partialTicks, PoseStack poseStack,
+                                                          MultiBufferSource buffer, int packedLight, float lerpYRot, float lerpXRot) {
+        poseStack.pushPose();
+
+        Item item = entity.getItemStack().getItem();
+        poseStack.mulPose(Axis.YP.rotationDegrees(180 - lerpYRot));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(180));
+
+        poseStack.translate(0.0F, 0.0F, 0.0F);
+
+        poseStack.scale(0.75F, 0.75F, 0.75F);
+        if (item instanceof BedItem) {
+            poseStack.translate(0.0F, -1.5F, -1.0F);
+        }else {
+            poseStack.translate(0.0F, -1.5F, -1.0F);
+        }
+        int currentFrame = getCurrentFrameIndex(entity, partialTicks, STREAMER_ENGINE_TEXTURES.length);
+        ResourceLocation currentTexture = getFrameTexture(currentFrame, entity.getItemStack());
+        streamerBlockEngineModel.setupAnim(entity, 0, 0, entity.tickCount + partialTicks, lerpYRot, lerpXRot);
+        float alpha = calculateAlphaSmooth(entity);
+
+        streamerBlockEngineModel.renderToBuffer(poseStack,
+                buffer.getBuffer(CustomBlendRenderType.wind(currentTexture)),
+                packedLight,
+                OverlayTexture.NO_OVERLAY,
+                1.0F,
+                1.0F,
+                1.0F,
+                alpha);
+        poseStack.popPose();
+    }
+
     private boolean isSpecialBlockItem(Item item) {
         return item instanceof BlockItem blockItem &&
                 !(blockItem.getBlock() instanceof BushBlock) &&
@@ -389,6 +466,10 @@ public class AerocraftItemRenderer extends EntityRenderer<AerocraftItemEntity> {
         } else if (EngineHelper.getEngineItem(stack).is(ItemsRegister.DRONE_ENGINE.get())) {
             if (frameIndex >= 0 && frameIndex < DRONE_ENGINE_TEXTURES.length) {
                 return DRONE_ENGINE_TEXTURES[frameIndex];
+            }
+        } else if (IntegrationItemsRegister.isChangShengJueLoaded() && EngineHelper.getEngineItem(stack).is(IntegrationItemsRegister.STREAMER_ENGINE.get())) {
+            if (frameIndex >= 0 && frameIndex < STREAMER_ENGINE_TEXTURES.length) {
+                return STREAMER_ENGINE_TEXTURES[frameIndex];
             }
         }
         return AERO_ENGINE_TEXTURES[0];
