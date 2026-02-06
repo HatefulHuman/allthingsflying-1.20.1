@@ -305,6 +305,49 @@ public class AerocrafEntity extends Entity implements GeoEntity {
     }
 
     /**
+     * 生成白光粒子
+     */
+    public void spawnWhiteLightParticles(AerocrafEntity entity, double speed, double lerpXZ, double lerpY) {
+        if (entity.level().isClientSide) {
+            Vec3 lookVec = entity.getLookAngle();
+
+            double centerX = entity.getX();
+            double centerY = entity.getY() + 0.5 + lerpY;
+            double centerZ = entity.getZ();
+
+            int particleCount = 1;
+            if (Math.random() < 0.2) {
+                particleCount = 2;
+            }
+
+            for (int i = 0; i < particleCount; i++) {
+                double halfWidth = 1.8;
+                double halfHeight = 0.5;
+                double halfDepth = 3.0;
+
+                double particleX = centerX + (Math.random() - 0.5) * halfWidth * 2;
+                double particleY = centerY + (Math.random() - 0.5) * halfHeight * 2;
+                double particleZ = centerZ + (Math.random() - 0.5) * halfDepth * 2;
+
+                // 粒子向后飞行（与飞行方向相反）
+                double velocityX = -lookVec.x * speed;
+                double velocityY = -lookVec.y * speed;
+                double velocityZ = -lookVec.z * speed;
+
+                entity.level().addParticle(
+                        ModParticles.WHITE_LIGHT.get(),
+                        particleX,
+                        particleY,
+                        particleZ,
+                        velocityX,
+                        velocityY,
+                        velocityZ
+                );
+            }
+        }
+    }
+
+    /**
      * 检测并处理碰撞伤害
      */
     protected void checkCollisionDamage() {

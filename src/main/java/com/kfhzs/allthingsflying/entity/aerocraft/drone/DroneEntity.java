@@ -3,6 +3,7 @@ package com.kfhzs.allthingsflying.entity.aerocraft.drone;
 import com.kfhzs.allthingsflying.AllThingsFlying;
 import com.kfhzs.allthingsflying.entity.AerocrafEntity;
 import com.kfhzs.allthingsflying.entity.EntityRegister;
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import com.kfhzs.allthingsflying.recipe.EngineHelper;
 import dev.kosmx.playerAnim.api.layered.IAnimation;
@@ -87,6 +88,10 @@ public class DroneEntity extends AerocrafEntity {
         if (EngineHelper.getEngineItem(this.getItemStack()).is(ItemsRegister.CLOUD_ENGINE.get())) {
             if (this.playerSpeed > 0.2 && !this.isInWater()) {
                 spawnCloudEngineParticles(this, 0.15,1.0,0.3);
+            }
+        }else if (IntegrationItemsRegister.isChangShengJueLoaded() && EngineHelper.getEngineItem(this.getItemStack()).is(IntegrationItemsRegister.STREAMER_ENGINE.get())) {
+            if (this.playerSpeed > 0.2 && !this.isInWater()) {
+                spawnWhiteLightParticles(this, 1.0,1.0,0.3);
             }
         }
         this.animationState.animateWhen(true, this.tickCount);

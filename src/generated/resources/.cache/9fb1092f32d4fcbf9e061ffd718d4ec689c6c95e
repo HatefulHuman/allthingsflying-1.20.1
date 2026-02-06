@@ -1,9 +1,10 @@
-// 1.20.1	2025-10-17T09:30:45.08784	Recipes
+// 1.20.1	2026-02-06T12:21:51.9212153	Recipes
 5709fb2ad5ea58e1182ab7b9ba61725da9fef015 data/allthingsflying/advancements/recipes/food/aero_engine.json
 2bbc53b59611493e5a0928f62d3096d0463891ae data/allthingsflying/advancements/recipes/food/cloud_engine.json
 181961b89e4e8a88d87af5d0ad1048c923939eb2 data/allthingsflying/advancements/recipes/food/drone_engine.json
 487499fdf5a1f4fe4cfcee9e19aca5b2d4b7075e data/allthingsflying/advancements/recipes/food/heavy_upgrade_core.json
 a828ff154ac66d4bd159612298ed6e93bcfda3df data/allthingsflying/advancements/recipes/food/magic_engine.json
+34144172d5416720123e7c2f2a01a89a0cf004c5 data/allthingsflying/advancements/recipes/food/streamer_engine.json
 5c66876a627437e6dcbd44133638dea1ad3c596d data/allthingsflying/advancements/recipes/food/thermal_engine.json
 5a13f87b77aaa7e4253dd2e4e6f96bdb09289038 data/allthingsflying/advancements/recipes/food/upgrade_core.json
 220233c04c725aed9e8d25e7b59d2a5c10c22c74 data/allthingsflying/recipes/aero_engine.json
@@ -11,5 +12,6 @@ a828ff154ac66d4bd159612298ed6e93bcfda3df data/allthingsflying/advancements/recip
 3d3b42759bf224669f0d70ca7c6c62e3c3b6c563 data/allthingsflying/recipes/drone_engine.json
 17276eb19d32e8ecbd676ee85528794e74f4d006 data/allthingsflying/recipes/heavy_upgrade_core.json
 ef366b5c1fc1744172425d27b6cdfd3e576a3185 data/allthingsflying/recipes/magic_engine.json
+f802dbac371435b16cecb5c8dca5c0c2f5c33a29 data/allthingsflying/recipes/streamer_engine.json
 e3c3089dcefb7f4f6bc77d586c8e8601a5a56e85 data/allthingsflying/recipes/thermal_engine.json
 36c6771f2a33ef305e74d09a9411f95319334012 data/allthingsflying/recipes/upgrade_core.json

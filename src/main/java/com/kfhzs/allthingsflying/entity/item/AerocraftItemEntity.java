@@ -3,6 +3,7 @@ package com.kfhzs.allthingsflying.entity.item;
 import com.kfhzs.allthingsflying.AllThingsFlying;
 import com.kfhzs.allthingsflying.entity.AerocrafEntity;
 import com.kfhzs.allthingsflying.entity.aerocraft.rocket.RocketEntity;
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import com.kfhzs.allthingsflying.particle.ModParticles;
 import com.kfhzs.allthingsflying.recipe.EngineHelper;
@@ -150,6 +151,10 @@ public class AerocraftItemEntity extends AerocrafEntity {
         }else if (EngineHelper.getEngineItem(stack).is(ItemsRegister.CLOUD_ENGINE.get())) {
             if (this.playerSpeed > 0.2 && !this.isInWater()) {
                 spawnCloudEngineParticles(this, 0.05,1.0, stack.getItem() instanceof BlockItem ? 0.75 : 0.2);
+            }
+        }else if (IntegrationItemsRegister.isChangShengJueLoaded() && EngineHelper.getEngineItem(stack).is(IntegrationItemsRegister.STREAMER_ENGINE.get())) {
+            if (this.playerSpeed > 0.2 && !this.isInWater()) {
+                spawnWhiteLightParticles(this, 1.0,1.0, stack.getItem() instanceof BlockItem ? 0.75 : 0.2);
             }
         }
         this.animationState.animateWhen(true, this.tickCount);

@@ -3,6 +3,7 @@ package com.kfhzs.allthingsflying.entity.aerocraft.sword;
 import com.kfhzs.allthingsflying.AllThingsFlying;
 import com.kfhzs.allthingsflying.entity.AerocrafEntity;
 import com.kfhzs.allthingsflying.entity.EntityRegister;
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import com.kfhzs.allthingsflying.recipe.EngineHelper;
 import dev.kosmx.playerAnim.api.layered.IAnimation;
@@ -93,6 +94,10 @@ public class FlyingSwordEntity extends AerocrafEntity {
         }else if (EngineHelper.getEngineItem(this.getItemStack()).is(ItemsRegister.CLOUD_ENGINE.get())) {
             if (this.playerSpeed > 0.2 && !this.isInWater()) {
                 spawnCloudEngineParticles(this, 0.15,2.0,0.2);
+            }
+        }else if (IntegrationItemsRegister.isChangShengJueLoaded() && EngineHelper.getEngineItem(this.getItemStack()).is(IntegrationItemsRegister.STREAMER_ENGINE.get())) {
+            if (this.playerSpeed > 0.2 && !this.isInWater()) {
+                spawnWhiteLightParticles(this, 1.0,2.0,0.2);
             }
         }
         this.animationState.animateWhen(true, this.tickCount);

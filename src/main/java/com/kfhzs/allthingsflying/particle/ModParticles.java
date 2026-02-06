@@ -20,6 +20,10 @@ public class ModParticles {
             PARTICLE_TYPES.register("cloud_engine_smoke",
                     () -> new SimpleParticleType(true));
 
+    public static final RegistryObject<SimpleParticleType> WHITE_LIGHT =
+            PARTICLE_TYPES.register("white_light",
+                    () -> new SimpleParticleType(true));
+
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);
     }

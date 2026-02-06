@@ -1,9 +1,12 @@
 package com.kfhzs.allthingsflying.datagen;
 
+import com.kfhzs.allthingsflying.items.IntegrationItemsRegister;
 import com.kfhzs.allthingsflying.items.ItemsRegister;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.*;
-import net.minecraft.world.item.Items;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -57,6 +60,15 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
                 .pattern("   ")
                 .pattern("###")
                 .unlockedBy("has_ender_pearls", has(Tags.Items.ENDER_PEARLS)).save(consumer);
+
+        if (IntegrationItemsRegister.isChangShengJueLoaded()) {
+            ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, IntegrationItemsRegister.STREAMER_ENGINE.get(),1)
+                    .define('#', Ingredient.of(Tags.Items.ENDER_PEARLS))
+                    .pattern("# #")
+                    .pattern(" # ")
+                    .pattern("# #")
+                    .unlockedBy("has_ender_pearls", has(Tags.Items.ENDER_PEARLS)).save(consumer);
+        }
 
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ItemsRegister.UPGRADE_CORE.get(),1)
                 .define('#', Ingredient.of(Tags.Items.GEMS_DIAMOND))
