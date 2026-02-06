@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class WhiteLightParticle extends TextureSheetParticle {
     private static final int PARTICLE_LIFETIME = 20;
-    private static final float INITIAL_SPEED = 1.0f;
+    private static final float INITIAL_SPEED = 0.5f;
 
     protected WhiteLightParticle(ClientLevel level, double x, double y, double z,
                                   double xd, double yd, double zd, SpriteSet spriteSet) {

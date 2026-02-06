@@ -7,6 +7,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
@@ -63,11 +64,11 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
 
         if (IntegrationItemsRegister.isChangShengJueLoaded()) {
             ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, IntegrationItemsRegister.STREAMER_ENGINE.get(),1)
-                    .define('#', Ingredient.of(Tags.Items.ENDER_PEARLS))
+                    .define('#', Ingredient.of(Items.GLOW_INK_SAC))
                     .pattern("# #")
                     .pattern(" # ")
                     .pattern("# #")
-                    .unlockedBy("has_ender_pearls", has(Tags.Items.ENDER_PEARLS)).save(consumer);
+                    .unlockedBy("has_ender_pearls", has(Items.GLOW_INK_SAC)).save(consumer);
         }
 
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ItemsRegister.UPGRADE_CORE.get(),1)
