@@ -1,43 +1,43 @@
-[062月2026 12:27:13.172] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\30251\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.4.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, allthingsflying, --all, --output, D:\Mod\allthingsflying-1.20.1\src\generated\resources, --existing, D:\Mod\allthingsflying-1.20.1\src\main\resources, --mixin.config, allthingsflying.mixins.json]
-[062月2026 12:27:13.176] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.11 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
-[062月2026 12:27:13.258] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
-[062月2026 12:27:13.289] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/30251/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
-[062月2026 12:27:13.475] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.4.0\f0c0b352173d0a378cbdcec9cfc4ba65899a721\javafmllanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[062月2026 12:27:13.477] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.4.0\e862740d8c84d08dbfedea412bef88fe42e727c5\lowcodelanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[062月2026 12:27:13.479] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.4.0\5719b3a297a33f877ed5dde4cb4bd75c859096af\mclanguage-1.20.1-47.4.0.jar is missing mods.toml file
-[062月2026 12:27:13.481] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.4.0\235975dafa4309945b59c56b53f31dc5b65a6051\fmlcore-1.20.1-47.4.0.jar is missing mods.toml file
-[062月2026 12:27:13.600] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
-[062月2026 12:27:14.514] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
-[062月2026 12:27:14.521] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\30251\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, allthingsflying, --all, --output, D:\Mod\allthingsflying-1.20.1\src\generated\resources, --existing, D:\Mod\allthingsflying-1.20.1\src\main\resources]
-[062月2026 12:27:14.571] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
-[062月2026 12:27:14.572] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
-[062月2026 12:27:14.587] [main/WARN] [mixin/]: Reference map 'allthingsflying.refmap.json' for allthingsflying.mixins.json could not be read. If this is a development environment you can ignore this message
-[062月2026 12:27:14.837] [main/INFO] [mixin/]: Remapping refMap chang_sheng_jue.refmap.json using D:\Mod\allthingsflying-1.20.1\build\createSrgToMcp\output.srg
-[062月2026 12:27:14.839] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using D:\Mod\allthingsflying-1.20.1\build\createSrgToMcp\output.srg
-[062月2026 12:27:14.846] [main/INFO] [mixin/]: Remapping refMap player-animation-lib-minecraft_common-refmap.json using D:\Mod\allthingsflying-1.20.1\build\createSrgToMcp\output.srg
-[062月2026 12:27:15.029] [main/WARN] [mixin/]: Redundant @Unique on injector method changShengJue$releaseUsing(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;ILorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V in chang_sheng_jue.mixins.json:MixinItem. Injectors are implicitly unique
-[062月2026 12:27:15.029] [main/WARN] [mixin/]: Redundant @Unique on injector method changShengJue$getUseDuration(Lnet/minecraft/world/item/ItemStack;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V in chang_sheng_jue.mixins.json:MixinItem. Injectors are implicitly unique
-[062月2026 12:27:15.306] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [allthingsflying]
-[062月2026 12:27:15.512] [main/WARN] [mixin/]: Redundant @Unique on injector method changShengJue$releaseUsing(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;ILorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V in chang_sheng_jue.mixins.json:MixinItem. Injectors are implicitly unique
-[062月2026 12:27:15.512] [main/WARN] [mixin/]: Redundant @Unique on injector method changShengJue$getUseDuration(Lnet/minecraft/world/item/ItemStack;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V in chang_sheng_jue.mixins.json:MixinItem. Injectors are implicitly unique
-[062月2026 12:27:18.135] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.0, for MC 1.20.1 with MCP 20230612.114412
-[062月2026 12:27:18.135] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.0 Initialized
-[062月2026 12:27:18.172] [modloading-worker-0/WARN] [software.bernie.geckolib.GeckoLib/]: Minecraft.getInstance() was null, could not register reload listeners
-[062月2026 12:27:18.299] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
-[062月2026 12:27:18.313] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 12.33 ms
-[062月2026 12:27:20.047] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/30251/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
-[062月2026 12:27:20.048] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/30251/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
-[062月2026 12:27:20.177] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
-[062月2026 12:27:20.197] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 19 ms
-[062月2026 12:27:20.198] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: allthingsflying
-[062月2026 12:27:20.198] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: allthingsflying finished after 0 ms
-[062月2026 12:27:20.198] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: allthingsflying
-[062月2026 12:27:20.207] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: allthingsflying finished after 9 ms
-[062月2026 12:27:20.207] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Global Loot Modifiers : allthingsflying
-[062月2026 12:27:20.214] [main/INFO] [net.minecraft.data.DataGenerator/]: Global Loot Modifiers : allthingsflying finished after 6 ms
-[062月2026 12:27:20.214] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Languages: en_us
-[062月2026 12:27:20.215] [main/INFO] [net.minecraft.data.DataGenerator/]: Languages: en_us finished after 0 ms
-[062月2026 12:27:20.215] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Languages: zh_cn
-[062月2026 12:27:20.216] [main/INFO] [net.minecraft.data.DataGenerator/]: Languages: zh_cn finished after 0 ms
-[062月2026 12:27:20.216] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 38 ms
-[062月2026 12:27:20.220] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 29, old count: 29, new count: 30, removed stale: 0, written: 2
+[062月2026 12:31:24.995] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgedatauserdev, --assetIndex, 5, --assetsDir, C:\Users\30251\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 47.4.0, --fml.mcVersion, 1.20.1, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20230612.114412, --mod, allthingsflying, --all, --output, D:\Mod\allthingsflying-1.20.1\src\generated\resources, --existing, D:\Mod\allthingsflying-1.20.1\src\main\resources, --mixin.config, allthingsflying.mixins.json]
+[062月2026 12:31:24.998] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 10.0.9+10.0.9+main.dcd20f30 starting: java version 17.0.11 by Oracle Corporation; OS Windows 11 arch amd64 version 10.0
+[062月2026 12:31:25.076] [main/INFO] [net.minecraftforge.fml.loading.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgedatauserdev
+[062月2026 12:31:25.110] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/30251/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%23128!/ Service=ModLauncher Env=CLIENT
+[062月2026 12:31:25.317] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.4.0\f0c0b352173d0a378cbdcec9cfc4ba65899a721\javafmllanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[062月2026 12:31:25.320] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.20.1-47.4.0\e862740d8c84d08dbfedea412bef88fe42e727c5\lowcodelanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[062月2026 12:31:25.322] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.20.1-47.4.0\5719b3a297a33f877ed5dde4cb4bd75c859096af\mclanguage-1.20.1-47.4.0.jar is missing mods.toml file
+[062月2026 12:31:25.325] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\30251\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.20.1-47.4.0\235975dafa4309945b59c56b53f31dc5b65a6051\fmlcore-1.20.1-47.4.0.jar is missing mods.toml file
+[062月2026 12:31:25.446] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: Found 1 dependencies adding them to mods collection
+[062月2026 12:31:27.218] [main/INFO] [mixin/]: Compatibility level set to JAVA_17
+[062月2026 12:31:27.227] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgedatauserdev' with arguments [--gameDir, ., --assetsDir, C:\Users\30251\.gradle\caches\forge_gradle\assets, --assetIndex, 5, --mod, allthingsflying, --all, --output, D:\Mod\allthingsflying-1.20.1\src\generated\resources, --existing, D:\Mod\allthingsflying-1.20.1\src\main\resources]
+[062月2026 12:31:27.273] [main/INFO] [mixin/]: Attempting to load Fernflower decompiler (Threaded mode)
+[062月2026 12:31:27.274] [main/INFO] [mixin/]: Fernflower could not be loaded, exported classes will not be decompiled. NoClassDefFoundError: org/jetbrains/java/decompiler/main/extern/IResultSaver
+[062月2026 12:31:27.285] [main/WARN] [mixin/]: Reference map 'allthingsflying.refmap.json' for allthingsflying.mixins.json could not be read. If this is a development environment you can ignore this message
+[062月2026 12:31:27.505] [main/INFO] [mixin/]: Remapping refMap chang_sheng_jue.refmap.json using D:\Mod\allthingsflying-1.20.1\build\createSrgToMcp\output.srg
+[062月2026 12:31:27.506] [main/INFO] [mixin/]: Remapping refMap geckolib.refmap.json using D:\Mod\allthingsflying-1.20.1\build\createSrgToMcp\output.srg
+[062月2026 12:31:27.512] [main/INFO] [mixin/]: Remapping refMap player-animation-lib-minecraft_common-refmap.json using D:\Mod\allthingsflying-1.20.1\build\createSrgToMcp\output.srg
+[062月2026 12:31:27.613] [main/WARN] [mixin/]: Redundant @Unique on injector method changShengJue$releaseUsing(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;ILorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V in chang_sheng_jue.mixins.json:MixinItem. Injectors are implicitly unique
+[062月2026 12:31:27.613] [main/WARN] [mixin/]: Redundant @Unique on injector method changShengJue$getUseDuration(Lnet/minecraft/world/item/ItemStack;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V in chang_sheng_jue.mixins.json:MixinItem. Injectors are implicitly unique
+[062月2026 12:31:27.869] [main/INFO] [net.minecraftforge.data.loading.DatagenModLoader/]: Initializing Data Gatherer for mods [allthingsflying]
+[062月2026 12:31:28.095] [main/WARN] [mixin/]: Redundant @Unique on injector method changShengJue$releaseUsing(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/entity/LivingEntity;ILorg/spongepowered/asm/mixin/injection/callback/CallbackInfo;)V in chang_sheng_jue.mixins.json:MixinItem. Injectors are implicitly unique
+[062月2026 12:31:28.095] [main/WARN] [mixin/]: Redundant @Unique on injector method changShengJue$getUseDuration(Lnet/minecraft/world/item/ItemStack;Lorg/spongepowered/asm/mixin/injection/callback/CallbackInfoReturnable;)V in chang_sheng_jue.mixins.json:MixinItem. Injectors are implicitly unique
+[062月2026 12:31:30.703] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 47.4.0, for MC 1.20.1 with MCP 20230612.114412
+[062月2026 12:31:30.704] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v47.4.0 Initialized
+[062月2026 12:31:30.743] [modloading-worker-0/WARN] [software.bernie.geckolib.GeckoLib/]: Minecraft.getInstance() was null, could not register reload listeners
+[062月2026 12:31:30.907] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager...
+[062月2026 12:31:30.911] [modloading-worker-0/INFO] [mezz.jei.library.load.PluginCaller/]: Sending ConfigManager took 2.696 ms
+[062月2026 12:31:32.715] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/30251/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23191!/assets/.mcassetsroot' uses unexpected schema
+[062月2026 12:31:32.715] [main/WARN] [net.minecraft.server.packs.VanillaPackResourcesBuilder/]: Assets URL 'union:/C:/Users/30251/.gradle/caches/forge_gradle/minecraft_user_repo/net/minecraftforge/forge/1.20.1-47.4.0_mapped_official_1.20.1/forge-1.20.1-47.4.0_mapped_official_1.20.1-recomp.jar%23191!/data/.mcassetsroot' uses unexpected schema
+[062月2026 12:31:32.850] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Recipes
+[062月2026 12:31:32.872] [main/INFO] [net.minecraft.data.DataGenerator/]: Recipes finished after 21 ms
+[062月2026 12:31:32.872] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Block States: allthingsflying
+[062月2026 12:31:32.872] [main/INFO] [net.minecraft.data.DataGenerator/]: Block States: allthingsflying finished after 0 ms
+[062月2026 12:31:32.872] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Item Models: allthingsflying
+[062月2026 12:31:32.884] [main/INFO] [net.minecraft.data.DataGenerator/]: Item Models: allthingsflying finished after 11 ms
+[062月2026 12:31:32.884] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Global Loot Modifiers : allthingsflying
+[062月2026 12:31:32.893] [main/INFO] [net.minecraft.data.DataGenerator/]: Global Loot Modifiers : allthingsflying finished after 8 ms
+[062月2026 12:31:32.893] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Languages: en_us
+[062月2026 12:31:32.894] [main/INFO] [net.minecraft.data.DataGenerator/]: Languages: en_us finished after 0 ms
+[062月2026 12:31:32.894] [main/INFO] [net.minecraft.data.DataGenerator/]: Starting provider: Languages: zh_cn
+[062月2026 12:31:32.894] [main/INFO] [net.minecraft.data.DataGenerator/]: Languages: zh_cn finished after 0 ms
+[062月2026 12:31:32.894] [main/INFO] [net.minecraft.data.DataGenerator/]: All providers took: 44 ms
+[062月2026 12:31:32.900] [main/INFO] [net.minecraft.data.HashCache/]: Caching: total files: 29, old count: 29, new count: 30, removed stale: 0, written: 1

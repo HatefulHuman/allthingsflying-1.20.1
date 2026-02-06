@@ -65,10 +65,10 @@ public class ModRecipesProvider extends RecipeProvider implements IConditionBuil
         if (IntegrationItemsRegister.isChangShengJueLoaded()) {
             ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, IntegrationItemsRegister.STREAMER_ENGINE.get(),1)
                     .define('#', Ingredient.of(Items.GLOW_INK_SAC))
-                    .pattern("# #")
                     .pattern(" # ")
                     .pattern("# #")
-                    .unlockedBy("has_ender_pearls", has(Items.GLOW_INK_SAC)).save(consumer);
+                    .pattern(" # ")
+                    .unlockedBy("has_glow_ink_sac", has(Items.GLOW_INK_SAC)).save(consumer);
         }
 
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, ItemsRegister.UPGRADE_CORE.get(),1)
