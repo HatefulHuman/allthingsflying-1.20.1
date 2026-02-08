@@ -72,8 +72,8 @@ public class AllThingsFlying {
                 output.accept(ItemsRegister.FLIGHT_GIFT_PACKAGE.get());
             }).build());
 
-    public AllThingsFlying(FMLJavaModLoadingContext context) {
-        IEventBus modEventBus = context.getModEventBus();
+    public AllThingsFlying() {
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::onClientSetup);
